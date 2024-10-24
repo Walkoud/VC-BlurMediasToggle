@@ -1,6 +1,7 @@
 # BlurMedias
 Vencord plugin to blur all medias, unblur when poiting the mouse
 
-![image](https://github.com/user-attachments/assets/e7ac56c8-df54-42db-80f1-7445d3955bd3)
+![qeAOy72nXV](https://github.com/user-attachments/assets/9edef370-858c-4500-91cf-1f0c84cf36ca)
 
-![image](https://github.com/user-attachments/assets/6e907d66-8570-4629-872d-0ae68e00298c)
+![image](https://github.com/user-attachments/assets/f6dbda9d-43ba-4785-94ff-e6e52a501100)
+
