@@ -6,7 +6,7 @@ if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
 
     # Définir l'URL et le chemin du fichier d'installation
     $nodeInstaller = "$env:TEMP\nodejs.msi"
-    $nodeUrl = "https://nodejs.org/dist/v20.11.0/node-v20.11.0-x64.msi"
+    $nodeUrl = "https://nodejs.org/dist/v22.13.1/node-v22.13.1-x64.msi"
 
     # Télécharger Node.js
     Write-Host "⬇️ Downloading Node.js..." -ForegroundColor Cyan
