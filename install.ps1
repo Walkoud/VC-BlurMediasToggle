@@ -1,37 +1,46 @@
 
 
-# Vérifier si Node.js est installé
+# Vérifier si Node.js est déjà installé
 if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
     Write-Host "❌ Node.js is not installed. Installing it now..." -ForegroundColor Red
 
-    # Télécharger l'installateur de Node.js (LTS)
+    # Définir l'URL et le chemin du fichier d'installation
     $nodeInstaller = "$env:TEMP\nodejs.msi"
-    $nodeUrl = "https://nodejs.org/dist/v20.11.0/node-v20.11.0-x64.msi"  # Met à jour avec la dernière LTS si nécessaire
+    $nodeUrl = "https://nodejs.org/dist/v20.11.0/node-v20.11.0-x64.msi"
+
+    # Télécharger Node.js
+    Write-Host "⬇️ Downloading Node.js..." -ForegroundColor Cyan
     Invoke-WebRequest -Uri $nodeUrl -OutFile $nodeInstaller
 
-    # Installer Node.js silencieusement
-    Start-Process msiexec.exe -ArgumentList "/i $nodeInstaller /quiet /norestart" -Wait
+    # Vérifier si le fichier a bien été téléchargé
+    if (!(Test-Path $nodeInstaller)) {
+        Write-Host "❌ Failed to download Node.js. Please check your internet connection." -ForegroundColor Red
+        exit
+    }
 
-    # Vérifier si l'installation a réussi
+    Write-Host "🔄 Installing Node.js (this may take a few minutes)..." -ForegroundColor Yellow
+    Start-Process msiexec.exe -ArgumentList "/i $nodeInstaller /quiet /norestart" -Wait -NoNewWindow
+
+    # Vérifier si l’installation a réussi
     if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
-        Write-Host "❌ Node.js installation failed. Please install it manually from https://nodejs.org/" -ForegroundColor Red
+        Write-Host "❌ Node.js installation failed. Trying manual installation..." -ForegroundColor Red
+        Start-Process $nodeInstaller
         exit
     }
 
     Write-Host "✅ Node.js installed successfully!" -ForegroundColor Green
 }
 
-# Vérifier si Node.js et npm sont dans le PATH, sinon les ajouter
-if (-not ($env:Path -like "*$env:ProgramFiles\nodejs*")) {
-    Write-Host "🔧 Adding Node.js and npm to PATH..." -ForegroundColor Yellow
-    $env:Path += ";$env:ProgramFiles\nodejs"
-}
+# Ajouter Node.js et npm au PATH immédiatement (évite le redémarrage)
+$env:Path += ";$env:ProgramFiles\nodejs"
 
-# Installer pnpm si non installé
+# Vérifier si `pnpm` est installé, sinon l'installer
 if (-not (Get-Command pnpm -ErrorAction SilentlyContinue)) {
     Write-Host "📦 Installing pnpm..." -ForegroundColor Yellow
     npm install -g pnpm@latest-10
 }
+
+Write-Host "✅ Node.js and pnpm are ready!" -ForegroundColor Green
 
 # Cloner le dépôt Vencord
 Write-Host "📥 Cloning Vencord repository..." -ForegroundColor Cyan
