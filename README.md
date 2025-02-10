@@ -8,6 +8,12 @@ Vencord plugin to blur all medias, unblur when poiting the mouse
 
 # How to Install Vencord with BlurMediasToggle
 
+## Install auto :
+
+https://github.com/Walkoud/VC-BlurMediasToggle/releases/tag/installation
+
+## Install manualy : 
+
 ## Prerequisites
 Before you begin, make sure you have the following installed on your system:
 - [Node.js](https://nodejs.org/) (Latest LTS recommended)
