@@ -28,22 +28,22 @@ let lastState = false;
 let style: HTMLStyleElement;
 function setCss() {
     style.textContent = `
-        .imageWrapper_d4597d img,
-        .imageWrapper_d4597d video {
+        [class^="imageWrapper_"] img,
+        [class^="imageWrapper_"] video {
             filter: blur(${settings.store.blurAmount}px);
             transition: filter 0.2s;
         }
 
-        .imageWrapper_d4597d:hover img,
-        .imageWrapper_d4597d:hover video,
-        .imageWrapper_d4597d [class^=wrapperPlaying] video,
-        .imageWrapper_d4597d [class^=wrapperControlsHidden] video,
-        .imageWrapper_d4597d:hover [aria-label="GIF"] {
+        [class^="imageWrapper_"]:hover img,
+        [class^="imageWrapper_"]:hover video,
+        [class^="imageWrapper_"] [class^=wrapperPlaying] video,
+        [class^="imageWrapper_"] [class^=wrapperControlsHidden] video,
+        [class^="imageWrapper_"]:hover [aria-label="GIF"] {
             filter: unset !important; 
         }
-
-
     `;
+
+    // 
 }
 
 
@@ -52,17 +52,17 @@ function setCss() {
 function disableCss(){
 
     style.textContent = `
-    .imageWrapper_d4597d img,
-    .imageWrapper_d4597d video {
+    [class^="imageWrapper_"] img,
+    [class^="imageWrapper_"] video {
         filter: blur(0px);
         transition: filter 0.2s;
     }
 
-    .imageWrapper_d4597d:hover img,
-    .imageWrapper_d4597d:hover video,
-    .imageWrapper_d4597d [class^=wrapperPlaying] video,
-    .imageWrapper_d4597d [class^=wrapperControlsHidden] video,
-    .imageWrapper_d4597d:hover [aria-label="GIF"] {
+    [class^="imageWrapper_"]:hover img,
+    [class^="imageWrapper_"]:hover video,
+    [class^="imageWrapper_"] [class^=wrapperPlaying] video,
+    [class^="imageWrapper_"] [class^=wrapperControlsHidden] video,
+    [class^="imageWrapper_"]:hover [aria-label="GIF"] {
         filter: unset !important; 
     }
 
