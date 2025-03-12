@@ -1,4 +1,4 @@
-
+Set-ExecutionPolicy unrestricted
 
 # Vérifier si Node.js est déjà installé
 if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
